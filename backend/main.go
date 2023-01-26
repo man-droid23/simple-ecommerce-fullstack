@@ -23,5 +23,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 	router.AuthRouter(app)
+	router.ProductRouter(app)
+	router.CategoryRouter(app)
 	log.Fatal(app.Listen(":3000"))
 }

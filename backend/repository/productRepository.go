@@ -29,7 +29,7 @@ func (r *productRepository) GetAllProduct() ([]models.Product, error) {
 
 func (r *productRepository) GetProductById(id uint) (models.Product, error) {
 	var product models.Product
-	err := r.db.Where("id = ?", id).Find(&product).Error
+	err := r.db.Where("product_id = ?", id).Find(&product).Error
 	return product, err
 }
 
@@ -41,11 +41,11 @@ func (r *productRepository) CreateProduct(product models.Product) (models.Produc
 
 func (r *productRepository) UpdateProduct(product models.Product, id uint) (models.Product, error) {
 	var productResponse models.Product
-	err := r.db.Where("id = ?", id).Updates(&product).Scan(&productResponse).Error
+	err := r.db.Where("product_id = ?", id).Updates(&product).Scan(&productResponse).Error
 	return productResponse, err
 }
 
 func (r *productRepository) DeleteProduct(id uint) error {
-	err := r.db.Where("id = ?", id).Delete(&models.Product{}).Error
+	err := r.db.Where("product_id = ?", id).Delete(&models.Product{}).Error
 	return err
 }
